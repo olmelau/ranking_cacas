@@ -45,10 +45,10 @@
                 <input type="hidden" name="controller" value="login">
                 <input type="hidden" name="action" value="procesarLogin">
 
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email">
                 <label for="username">Nombre Usuario</label>
                 <input type="text" name="username" id="username">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
                 <label for="password">Contraseña</label>
                 <input type="password" name="password" id="password">
 

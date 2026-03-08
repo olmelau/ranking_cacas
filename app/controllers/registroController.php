@@ -51,7 +51,7 @@ class RegistroController {
 
         // Procesamos el resultado
         if ($resultado['success']) {
-            // Registro exitoso, redirigimos al home con mensaje de éxito
+            // Registro exitoso, redirigimos al dashboard
             header('Location: index.php?controller=dashboard&action=mostrarDashboard');
         } else {
             // Error en el registro, redirigimos con el tipo de error
