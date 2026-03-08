@@ -3,7 +3,7 @@
 class DashboardController{
 
     public function mostrarDashboard(){
-        header('Location: ../app/views/dashboardView.php');
+        require_once ('../app/views/dashboardView.php');
     }
 }
 ?>
