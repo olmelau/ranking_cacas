@@ -24,11 +24,16 @@ class GruposController
         $resultado = $modelo->crearGrupo($nombre, $descripcion, $password, $creado_por);
         
         if ($resultado) {
-            header('Location: index.php?controller=grupos&action=mostrarGrupos&success=grupo_creado');
+            header('Location: index.php?controller=grupos&action=mostrarGrupos');
         } else {
             header('Location: index.php?controller=grupos&action=nuevoGrupo&error=error_bd');
         }
         exit();
+    }
+
+
+    public function mostrarGrupos(){
+        echo "Grupo creado ok ---PRUEBAS";
     }
 
 }

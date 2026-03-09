@@ -15,13 +15,13 @@
     <input type="text" name="nombre_grupo" id="nombre_grupo" required>
     <br><br>
     <label for="descripcion">Descripcion del grupo (opcional)</label>
-    <input type="text" name="descripcion_grupo" id="descripcion_grupo">
+    <input type="text" name="descripcion" id="descripcion">
     <br><br>
-    <label for="password_grupo">Contraseña del grupo *</label>    
-    <input type="text" name="password_grupo" id="password_grupo" required placeholder="minimo 4 caracteres">
+    <label for="password">Contraseña del grupo *</label>    
+    <input type="text" name="password" id="password" required placeholder="minimo 4 caracteres">
     <br><br>
-    <label for="password_grupo2">Repite la contraseña *</label>    
-    <input type="text" name="password_grupo2" id="password_grupo2" required>
+    <label for="password2">Repite la contraseña *</label>    
+    <input type="text" name="password2" id="password2" required>
     <br><br>
     <button type="submit">Crear Grupo</button>
 
