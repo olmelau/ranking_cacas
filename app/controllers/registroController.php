@@ -1,12 +1,16 @@
 <?php
 
 // Necesitamos el modelo de registro
-require_once ('../app/models/RegistroModel.php');
+require_once('../app/models/RegistroModel.php');
 
-class RegistroController {
+class RegistroController
+{
 
     // Método para procesar el registro
-    public function procesarRegistro($datos) {
+    public function procesarRegistro($datos)
+    {
+
+        session_start();
 
         // Verificamos que el envío del formulario sea por POST
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

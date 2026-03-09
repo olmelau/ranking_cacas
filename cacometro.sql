@@ -48,6 +48,10 @@ CREATE TABLE contador_cacas (
     FOREIGN KEY (id_grupo) REFERENCES grupos(id_grupo) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+-- Añadir columna descripcion a tabla existente
+ALTER TABLE grupos 
+ADD COLUMN descripcion TEXT NULL AFTER nombre_grupo;
+
 -- Tabla para editar perfil (opcional, podrían ser campos en usuarios)
 -- Pero como ya tienes email y username en usuarios, no hace falta tabla extra
 
