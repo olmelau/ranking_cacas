@@ -34,6 +34,9 @@ class GruposController
 
     public function mostrarGrupos(){
         echo "Grupo creado ok ---PRUEBAS";
+
+
+        // ESTO ES UNA PRUEBA
     }
 
 }
