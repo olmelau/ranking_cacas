@@ -31,7 +31,7 @@ foreach ($_POST as $key => $value) {
         $datos[$key] = $value;
     }
 }
-
+//Esto es una prueba
 
 // Construir nombre del archivo y clase
 $controllerName = $controller . 'Controller'; 
