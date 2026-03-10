@@ -36,7 +36,6 @@ class GruposController
         echo "Grupo creado ok ---PRUEBAS";
 
 
-        // ESTO ES UNA PRUEBA
     }
 
 }

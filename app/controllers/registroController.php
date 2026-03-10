@@ -1,7 +1,7 @@
 <?php
 
 // Necesitamos el modelo de registro
-require_once('../app/models/RegistroModel.php');
+require_once('../app/models/registroModel.php');
 
 class RegistroController
 {
