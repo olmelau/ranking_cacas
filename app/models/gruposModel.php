@@ -73,8 +73,21 @@ class GruposModel
 
     }
 
-    public function recuperarGrupos()
+    //este método busca los grupos a los que pertenece un usuario
+    public function recuperarGrupos($id_usuario)
     {
+        $sql = "SELECT g.*, gu.rol 
+                FROM grupos g
+                INNER JOIN grupos_usuarios gu ON g.id_grupo = gu.id_grupo
+                WHERE gu.id_usuario = :id_usuario
+                ORDER BY g.nombre_grupo ASC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
