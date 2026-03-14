@@ -1,7 +1,7 @@
 <?php
 
 //necesito loginModel
-require_once ('../app/models/LoginModel.php');
+require_once ('../app/models/loginModel.php');
 
 class loginController{
     

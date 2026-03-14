@@ -42,6 +42,7 @@ class GruposController
             exit();
         }
 
+<<<<<<< HEAD
         
         $id_usuario = $_SESSION['id_usuario'];
         $modelo = new GruposModel();
@@ -52,6 +53,8 @@ class GruposController
         } else {
             echo " no hay grupos que mostrar";
         }
+=======
+>>>>>>> 373c2d360ae39b70e36b6aa6282b7fcf9bd60567
     }
 
 }
