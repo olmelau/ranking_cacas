@@ -37,11 +37,12 @@ class GruposController
     {
 
         session_start();
-
         if (!isset($_SESSION['id_usuario'])) {
             header('Location: index.php?controller=home&action=home');
             exit();
         }
+
+        
         $id_usuario = $_SESSION['id_usuario'];
         $modelo = new GruposModel();
 
@@ -49,7 +50,7 @@ class GruposController
         if ($grupos) {
             include '../app/views/misGruposView.php';
         } else {
-            echo " la consulta está mal";
+            echo " no hay grupos que mostrar";
         }
     }
 

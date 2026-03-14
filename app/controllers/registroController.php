@@ -55,6 +55,9 @@ class RegistroController
 
         // Procesamos el resultado
         if ($resultado['success']) {
+            $_SESSION['username'] = $username;
+            $_SESSION['email'] = $email;
+            $_SESSION['id_usuario'] = $resultado['id_usuario'];
             // Registro exitoso, redirigimos al dashboard
             header('Location: index.php?controller=dashboard&action=mostrarDashboard');
         } else {
