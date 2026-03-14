@@ -2,7 +2,7 @@
 //Conexion a la base de Datos - Las constantes estan en configDB.php
 require_once "configDB.php";
 
-class ConexionBD {
+class ConnBD {
     private static $conexion=null;
 
     public static function conexion() {
