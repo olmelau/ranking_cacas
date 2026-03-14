@@ -18,10 +18,10 @@
     <input type="text" name="descripcion" id="descripcion">
     <br><br>
     <label for="password">Contraseña del grupo *</label>    
-    <input type="text" name="password" id="password" required placeholder="minimo 4 caracteres">
+    <input type="password" name="password" id="password" required placeholder="minimo 4 caracteres">
     <br><br>
     <label for="password2">Repite la contraseña *</label>    
-    <input type="text" name="password2" id="password2" required>
+    <input type="password" name="password2" id="password2" required>
     <br><br>
     <button type="submit">Crear Grupo</button>
 
