@@ -41,7 +41,7 @@ CREATE TABLE contador_cacas (
     id_usuario INT NOT NULL,
     total_cacas INT NOT NULL DEFAULT 0,
     ultima_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (id_usuario, id_grupo),
+    PRIMARY KEY (id_usuario),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
