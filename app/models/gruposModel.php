@@ -16,21 +16,21 @@ class GruposModel
      * Crea un grupo y automáticamente asigna al creador como admin
      * return int|false ID del grupo creado o false si falla
      */
-    public function crearGrupo($nombre, $descripcion, $contrasena, $creado_por)
+    public function crearGrupo($nombre, $descripcion, $password, $creado_por)
     {
         try {
             // Iniciar transacción (para que si falla algo no se quede a medias)
             $this->db->beginTransaction();
 
             // 1. Insertar el grupo
-            $sql_grupo = "INSERT INTO grupos (nombre_grupo, descripcion, contrasena, creado_por) 
-                          VALUES (:nombre, :descripcion, :contrasena, :creado_por)";
+            $sql_grupo = "INSERT INTO grupos (nombre_grupo, password, creado_por, total_cacas, fecha_registro, descripcion) 
+                          VALUES (:nombre, :password, :creado_por, 0, CURRENT_TIMESTAMP, :descripcion)";
 
             $stmt = $this->db->prepare($sql_grupo);
             $stmt->bindParam(':nombre', $nombre);
-            $stmt->bindParam(':descripcion', $descripcion);
-            $stmt->bindParam(':contrasena', $contrasena);
+            $stmt->bindParam(':password', $password);
             $stmt->bindParam(':creado_por', $creado_por);
+            $stmt->bindParam(':descripcion', $descripcion);
             $stmt->execute();
 
             // Obtener el ID del grupo recién creado
