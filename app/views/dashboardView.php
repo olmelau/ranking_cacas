@@ -9,10 +9,10 @@
      <?php 
     // Mostrar el username si está en sesión
     session_start();
-    $username = $_SESSION['username'] ?? 'hola'; 
+    $username = $_SESSION['username'] ?? 'Usuario';
     ?>
 
-    <h1>Bienvenido <?php echo $username ?></h1>
+    <h1>Bienvenido <?php echo $username;?></h1>
     <form action="index.php" method="post">
         <input type="hidden" name="controller" value="caca">
         <input type="hidden" name="action" value="sumarCaca">
