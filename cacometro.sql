@@ -17,7 +17,7 @@ CREATE TABLE usuarios (
 CREATE TABLE grupos (
     id_grupo INT PRIMARY KEY AUTO_INCREMENT,
     nombre_grupo VARCHAR(100) NOT NULL,
-    contrasena VARCHAR(255) NOT NULL, -- Para entrar al grupo
+    password VARCHAR(255) NOT NULL, -- Para entrar al grupo
     creado_por INT NOT NULL, -- Usuario que creó el grupo (admin)
     total_cacas INT NOT NULL DEFAULT 0,
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -29,6 +29,7 @@ CREATE TABLE grupos (
 CREATE TABLE grupos_usuarios (
     id_usuario INT NOT NULL,
     id_grupo INT NOT NULL,
+    cacas_user_grupo INT NOT NULL DEFAULT 0,
     rol ENUM('admin', 'miembro') DEFAULT 'miembro', -- Para identificar admins
     fecha_union TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id_usuario, id_grupo),
@@ -40,7 +41,7 @@ CREATE TABLE grupos_usuarios (
 CREATE TABLE contador_cacas (
     id_usuario INT NOT NULL,
     total_cacas INT NOT NULL DEFAULT 0,
-    ultima_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    ultimo_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id_usuario),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
 ) ENGINE=InnoDB;
