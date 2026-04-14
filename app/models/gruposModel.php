@@ -22,6 +22,8 @@ class GruposModel
             // Iniciar transacción (para que si falla algo no se quede a medias)
             $this->db->beginTransaction();
 
+            var_dump($nombre);
+
             // 1. Insertar el grupo
             $sql_grupo = "INSERT INTO grupos (nombre_grupo, password, creado_por, total_cacas, fecha_registro, descripcion) 
                           VALUES (:nombre, :password, :creado_por, 0, CURRENT_TIMESTAMP, :descripcion)";
@@ -33,31 +35,24 @@ class GruposModel
             $stmt->bindParam(':descripcion', $descripcion);
             $stmt->execute();
 
+            
             // Obtener el ID del grupo recién creado
             $id_grupo = $this->db->lastInsertId();
+        
+            var_dump($id_grupo);
 
             // 2. Insertar al creador en grupos_usuarios como admin
-            $sql_relacion = "INSERT INTO grupos_usuarios (id_usuario, id_grupo, rol) 
-                             VALUES (:id_usuario, :id_grupo, 'admin')";
+            $sql_relacion = "INSERT INTO grupos_usuarios (id_usuario, id_grupo, cacas_user_grupo, rol, fecha_union) 
+                             VALUES (:id_usuario, :id_grupo, 0, 'admin', CURRENT_TIMESTAMP)";
 
             $stmt2 = $this->db->prepare($sql_relacion);
             $stmt2->bindParam(':id_usuario', $creado_por);
             $stmt2->bindParam(':id_grupo', $id_grupo);
             $stmt2->execute();
-
-            // 3. Inicializar contador de cacas para este usuario en este grupo
-            $sql_contador = "INSERT INTO contador_cacas (id_usuario, id_grupo, total_cacas) 
-                             VALUES (:id_usuario, :id_grupo, 0)";
-
-            $stmt3 = $this->db->prepare($sql_contador);
-            $stmt3->bindParam(':id_usuario', $creado_por);
-            $stmt3->bindParam(':id_grupo', $id_grupo);
-            $stmt3->execute();
-
-            // Si todo ha ido bien, confirmamos la transacción
+            
             $this->db->commit();
 
-            return $id_grupo; // Devolvemos el ID del grupo creado
+            return true; // Devolvemos el ID del grupo creado
 
         } catch (Exception $e) {
             // Si algo falla, deshacemos todos los cambios
