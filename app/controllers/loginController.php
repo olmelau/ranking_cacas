@@ -25,6 +25,8 @@ class loginController{
         $email = $datos['email'];
         $password = $datos['password'];
 
+
+        
         $modelo = new LoginModel();
         $id_usuario = $modelo->buscarUsuario($username, $email, $password);
 

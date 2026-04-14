@@ -35,10 +35,10 @@ class GruposModel
             $stmt->bindParam(':descripcion', $descripcion);
             $stmt->execute();
 
-            
+
             // Obtener el ID del grupo recién creado
             $id_grupo = $this->db->lastInsertId();
-        
+
             var_dump($id_grupo);
 
             // 2. Insertar al creador en grupos_usuarios como admin
@@ -49,7 +49,7 @@ class GruposModel
             $stmt2->bindParam(':id_usuario', $creado_por);
             $stmt2->bindParam(':id_grupo', $id_grupo);
             $stmt2->execute();
-            
+
             $this->db->commit();
 
             return true; // Devolvemos el ID del grupo creado
@@ -86,8 +86,57 @@ class GruposModel
 
     }
 
-    public function insertarUsuarioAGrupo()
+    public function insertarUsuarioAGrupo($id_usuario, $nombreGrupo, $password)
     {
+        try{
+            $this->db->beginTransaction();
+
+            $sql = "SELECT id_grupo
+                    FROM grupos 
+                    WHERE nombre_grupo = :nombre_grupo AND password = :password";
+    
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(":nombre_grupo", $nombreGrupo, PDO::PARAM_STR);
+            $stmt->bindParam(":password", $password, PDO::PARAM_STR);
+    
+            $stmt->execute();
+    
+
+            $id_grupo= $stmt->fetchColumn();
+      
+            //comprobamos que coincidan el nombre del grupo y la contraseña
+            if ($id_grupo != false) {
+    
+                $sql2 = "INSERT INTO grupos_usuarios (id_usuario, id_grupo, cacas_user_grupo, rol, fecha_union) 
+                         VALUES (:id_usuario, :id_grupo, 0, 'miembro', CURRENT_TIMESTAMP)";
+                $stmt = $this->db->prepare($sql2);
+                $stmt->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
+                $stmt->bindParam(":id_grupo", $id_grupo, PDO::PARAM_INT);
+                
+                $stmt->execute();
+    
+                $this->db->commit();
+                
+                return true;
+    
+    
+            } else {
+    
+
+                echo "Fallo -> ";
+                return false;
+    
+            }
+        } catch (Exception $e){
+             echo $e;
+
+            $this->db->rollBack();
+            return false;
+        }
+
+
+
+
 
     }
 

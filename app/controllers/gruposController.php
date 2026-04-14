@@ -41,7 +41,7 @@ class GruposController
             header('Location: index.php?controller=home&action=home');
             exit();
         }
-        
+
         $id_usuario = $_SESSION['id_usuario'];
         $modelo = new GruposModel();
 
@@ -50,6 +50,41 @@ class GruposController
             include '../app/views/misGruposView.php';
         } else {
             echo " no hay grupos que mostrar";
+        }
+
+    }
+
+
+    public function entrarAgrupo()
+    {
+
+        require_once '../app/views/entrarAgrupoView.php';
+
+
+
+    }
+
+    public function existeGrupo($datos)
+    {
+
+        session_start();
+        $id_usuario = $_SESSION['id_usuario'];
+
+        $nombreGrupo = $datos['nombre_grupo'];
+        $password = $datos['password'];
+
+        $modelo = new GruposModel();
+
+        //si existe el grupo esto será true y si no false
+        $existeGrupo = $modelo->insertarUsuarioAGrupo($id_usuario, $nombreGrupo, $password);
+
+
+        if ($existeGrupo){
+            require_once '../app/views/misGruposView.php';
+        } else{
+
+            echo " no te has registrado en ningun grupo";
+            require_once '../app/views/entrarAgrupoView.php';
         }
 
     }
